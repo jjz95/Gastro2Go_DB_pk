@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<script defer src="/js/index.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/profil.css" />
+    <link rel="stylesheet" href="/css/styleIndex.css" />
+    <link rel="stylesheet" href="/css/rejestracja.css" />
+    <link href="https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
+    <script> var exports = {}; </script>
+    <script defer src="/js/updateOrderComponent.js"></script>
+    <title>Gastro2Go</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="headerItemImg">
+            <div>
+                <a href="/users/"><img class="GastroIcon" src="/img/GASTRO.png" alt="???"></a>
+            </div>
+        </div>
+        <div class="headerItem">
+            <a href="/users">Twój Koszyk</a>
+            <a href="/users/shop">Przeglądaj Produkty</a>
+            <!-- <a href="/info/kontakt">Kontakt</a>
+            <a href="/info/onas">O Nas</a> -->
+            <a href="/users/orders">Twoje zamówienia</a>
+            <a href="/users/panel">Dane Użytkownika</a>
+            <a href="/auth/logout">Wyloguj</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="main">
+            <div class="inline-block">
+                <table id="tabelka">
+                    <caption>Zamówienia:</caption>
+                    <thead>
+                        <tr>
+                            <th>numer identyfikacyjny</th>
+                            <th>data zamowienia</th>
+                            <th>status</th>
+                            <th>cena ogolna</th>
+                            <th>waga ogolna</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                    </tfoot>
+                    <tbody>
+                        <% confirmedOrders.forEach(function(p){ %>
+                        <tr>
+                            <td><%= p.id %></td>
+                            <td>
+                                <%=
+                                    (function () {
+                                        var dd = p.created_at.getDate();
+                                        var mm = p.created_at.getMonth() + 1; //January is 0!
+                                        var yyyy = p.created_at.getFullYear();
+                                        // var hh = p.created_at.getHours();
+                                        // var minmin = p.created_at.getMinutes();
+                                        if (dd < 10) { 
+                                            dd='0' + dd 
+                                        } 
+
+                                        if (mm < 10) {
+                                            mm='0' + mm 
+                                        }
+                                        
+                                        return yyyy + '-' + mm + '-' + dd; 
+                                    }());
+                                %>
+                            </td>
+                            <td>
+                                <%if (p.status == 'confirmed') { %>
+                                <p style="color: green;"><%= p.status %></p>
+                                <% } else { %>
+                                <p style="color: red;"><%= p.status %></p>
+                                <% }%>
+                            </td>
+                            <td><%= p.cost %></td>
+                            <td><%= p.wage %></td>
+                            <form action="/users/seeorderedproducts/<%= p.id %>" method="GET" target="_blank">
+                                <td><button class="float-right" type="submit">Zobacz zamówione produkty</button></td>
+                            </form>
+                            <%if (p.status == 'confirmed') { %>
+                            <form action="/users/cancelorder/<%= p.id %>" method="POST">
+                                <td><button class="float-right" type="submit">Anuluj zamówienie</button></td>
+                            </form>
+                            <% }%>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <p>Jakub Żarkowski S16574</p>
+        </div>
+
+
+    </footer>
+
+</body>
+
+</html>

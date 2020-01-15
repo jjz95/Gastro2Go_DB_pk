@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admin.css" />
+    <script> var exports = {}; </script>
+    <script defer src="/js/delete.js"></script>
+    <title>Admin</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-item">
+            <a class="blacked" href="/admin/">Powrót</a>
+        </div>
+        <div class="header-item log-out">
+            <a class="blacked log-out" href="/admin/logout">Wyloguj się</a>
+        </div>
+        <!-- <div class="header-item">
+            <a class="blacked" href="/admin/adminzamowienie">User's Orders</a>
+        </div> -->
+    </header>
+    <main>
+
+        <br>
+        <hr>
+        <br>
+        <table>
+            <caption>Użytkownicy:</caption>
+            <thead>
+                <tr>
+                    <!-- firstName, lastName, email, passwordHash, dateOfBirth, contactNumber, business, address, zipCode, country, id -->
+                    <th>ID Użytkownika</th>
+                    <th>E-mail</th>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Numer kontaktowy</th>
+                    <th>Data urodzenia</th>
+                    <th>Przedsiębiorstwo</th>
+                    <th>Adres</th>
+                    <th>Kod pocztowy</th>
+                    <th>Kraj zamieszkania</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% userList.forEach(function(user){ %>
+                <tr>
+                    <td><%= user.id %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.firstName %></td>
+                    <td><%= user.lastName %></td>
+                    <td><%= user.contactNumber %></td>
+                    <td>
+                        <%= 
+                            (function () {
+                                var dd = user.dateOfBirth.getDate();
+                                var mm = user.dateOfBirth.getMonth() + 1; //January is 0!
+                                var yyyy = user.dateOfBirth.getFullYear();
+                                // var hh = p.created_at.getHours();
+                                // var minmin = p.created_at.getMinutes();
+                                if (dd < 10) { 
+                                    dd='0' + dd 
+                                } 
+
+                                if (mm < 10) {
+                                    mm='0' + mm 
+                                }
+                                
+                                return yyyy + '-' + mm + '-' + dd; 
+                            }());
+                        %>
+                    </td>
+                    <td><%= user.business %></td>
+                    <td><%= user.address %></td>
+                    <td><%= user.zipCode %></td>
+                    <td><%= user.country %></td>
+                    <form action="/admin/adminseeorders/<%= user.id %>" method="GET">
+                        <td><button type="submit">Zobacz zamówienia</button></td>
+                    </form>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <br>
+        <hr>
+        
+    </main>
+
+    <footer>
+
+    </footer>
+
+</body>
+
+</html>

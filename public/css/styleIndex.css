@@ -1,0 +1,53 @@
+.wrapper {
+    background-color: whitesmoke;
+    list-style-type: none;
+    padding: 0;
+    border-radius: 3px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: flex-end;
+    padding: .9em;
+}
+
+.form-row>label {
+    padding: .5em 1em .5em 0;
+    flex: 1;
+}
+
+.form-row>input {
+    flex: 2;
+}
+
+.form-row>input, .form-row>button {
+    padding: .5em;
+}
+
+form {}
+
+input {
+    height: 1em;
+}
+
+.flex {
+    display: flex;
+}
+
+
+
+.headerItem a{
+    padding: 2rem;
+    font-size: 2rem;
+}
+
+.whiteBackground {
+    display: inline-block;
+    background-color: aliceblue;
+}
+
+table{
+    border: 1px solid black;
+    border-collapse: separate;
+    border-spacing: 15px;
+}

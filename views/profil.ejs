@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<script defer src="/js/index.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/profil.css" />
+    <link rel="stylesheet" href="/css/styleIndex.css" />
+    <link rel="stylesheet" href="/css/rejestracja.css" />
+    <link href="https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
+    <script> var exports = {}; </script>
+    <script defer src="/js/updateOrderComponent.js"></script>
+    <title>Gastro2Go</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="headerItemImg">
+            <div>
+                <a href="/users/"><img class="GastroIcon" src="/img/GASTRO.png" alt="???"></a>
+            </div>
+        </div>
+        <div class="headerItem">
+
+            <a href="/users">Twój Koszyk</a>
+            <a href="/users/shop">Przeglądaj Produkty</a>
+
+            <!-- <a href="/info/kontakt">Kontakt</a>
+            <a href="/info/onas">O Nas</a> -->
+            <a href="/users/orders">Twoje zamówienia</a>
+            <a href="/users/panel">Dane Użytkownika</a>
+            <a href="/auth/logout">Wyloguj</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="main">
+
+            <div class="product-table">
+                <table id="tabelka">
+                    <caption>Twój koszyk:</caption>
+                    <thead>
+                        <tr>
+                            <th>Nazwa</th>
+                            <th>Typ</th>
+                            <th>Waga</th>
+                            <th>Cena</th>
+                            <th>Waga ogolem</th>
+                            <th>Cena ogolem</th>
+                            <th>Ilosc</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                    </tfoot>
+                    <tbody id="tbody-orderComponents">
+                        <% if(productList.length > 0){ %>
+                        <% productList.forEach(function(pv){ %>
+                        <tr>
+                            <form action="/users/removeproduct/<%= pv.product.id %>" method="POST">
+                                <td><%= pv.product.nazwa %></td>
+                                <td><%= pv.product.typ %></td>
+                                <td id="waga<%= pv.product.id %>"><%= pv.product.waga %></td>
+                                <td id="cena<%= pv.product.id %>"><%= pv.product.cena %></td>
+                                <td id="waga-ilosc<%= pv.product.id %>"><%= pv.product.waga * pv.ilosc %></td>
+                                <td id="cena-ilosc<%= pv.product.id %>"><%= pv.product.cena * pv.ilosc %></td>
+                                <td><input class="ilosc" id="ilosc<%= pv.product.id %>" min="1" type="number"
+                                        name="ilosc" required value="<%= pv.ilosc %>"></td>
+                                <td><button type="submit">Usuń produkt</button></td>
+                            </form>
+                        </tr>
+                        <% }) %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+            <% if(orderPendingId != -1){%>
+            <p id="dontForget" class="whiteBackground">(Nie zapomnij zaktualizować ilości produktów przed zamówieniem!)</p>
+            <div class="flex">
+                <button onclick="updateProducts()" type="submit">Zaktualizuj ilość produktów</button>
+                <form action="/users/ordernow/<%= orderPendingId %>" method="POST">
+                    <button type="submit">Zamów teraz!</button>
+                </form>
+            </div>
+            <% }%>
+            <br>
+
+        </div>
+        <div>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <p>Jakub Żarkowski S16574</p>
+        </div>
+
+
+    </footer>
+
+</body>
+
+</html>

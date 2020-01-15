@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admin.css" />
+    <script> var exports = {}; </script>
+    <script defer src="/js/delete.js"></script>
+    <title>Admin</title>
+</head>
+
+<body>
+
+   
+
+    <main>
+        <div class="main">
+
+            <div class="product-table">
+                <table id="tabelka">
+                    <caption>Twoje zamówienie: <%= orderId %></caption>
+                    <thead>
+                        <tr>
+                            <th>Nazwa</th>
+                            <th>Typ</th>
+                            <th>Waga</th>
+                            <th>Cena</th>
+                            <th>Waga ogolem</th>
+                            <th>Cena ogolem</th>
+                            <th>Ilosc</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                    </tfoot>
+                    <tbody id="tbody-orderComponents">
+                        <% if(productList.length > 0){ %>
+                        <% productList.forEach(function(pv){ %>
+                        <tr>
+                            <td><%= pv.product.nazwa %></td>
+                            <td><%= pv.product.typ %></td>
+                            <td id="waga<%= pv.product.id %>"><%= pv.product.waga %></td>
+                            <td id="cena<%= pv.product.id %>"><%= pv.product.cena %></td>
+                            <td id="waga-ilosc<%= pv.product.id %>"><%= pv.product.waga * pv.ilosc %></td>
+                            <td id="cena-ilosc<%= pv.product.id %>"><%= pv.product.cena * pv.ilosc %></td>
+                            <td><%= pv.ilosc %></td>
+                        </tr>
+                        <% }) %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+
+            <br>
+
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+
+</body>
+
+</html>

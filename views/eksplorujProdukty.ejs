@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<script defer src="/js/index.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/profil.css" />
+    <link rel="stylesheet" href="/css/styleIndex.css" />
+    <link rel="stylesheet" href="/css/rejestracja.css" />
+    <link href="https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
+    <script> var exports = {}; </script>
+    <script defer src="/js/updateOrderComponent.js"></script>
+    <title>Gastro2Go</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="headerItemImg">
+            <div>
+                <a href="/users/"><img class="GastroIcon" src="/img/GASTRO.png" alt="???"></a>
+            </div>
+        </div>
+        <div class="headerItem">
+            <a href="/users">Twój Koszyk</a>
+            <a href="/users/shop">Przeglądaj Produkty</a>
+            <!-- <a href="/info/kontakt">Kontakt</a>
+            <a href="/info/onas">O Nas</a> -->
+            <a href="/users/orders">Twoje zamówienia</a>
+            <a href="/users/panel">Dane Użytkownika</a>
+            <a href="/auth/logout">Wyloguj</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="main">
+            <div class="inline-block">
+                <table id="tabelka">
+                    <caption>Produkty:</caption>
+                    <thead>
+                        <tr>
+                            <th>Nazwa</th>
+                            <th>Typ</th>
+                            <th>Waga</th>
+                            <th>Cena</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                    </tfoot>
+                    <tbody>
+                        <% restProductList.forEach(function(p){ %>
+                        <tr>
+                            <form action="/users/addproduct" method="POST">
+                                <td><%= p.nazwa %></td>
+                                <td><%= p.typ %></td>
+                                <td><%= p.waga %></td>
+                                <td><%= p.cena %></td>
+                                <td><input type="hidden" name="productId" value="<%= p.id %>"></td>
+                                <td><button class="float-right" type="submit">Dodaj Produkt</button></td>
+                            </form>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+
+    </main>
+
+    <footer>
+        <div>
+            <p>Jakub Żarkowski S16574</p>
+        </div>
+
+
+    </footer>
+
+</body>
+
+</html>

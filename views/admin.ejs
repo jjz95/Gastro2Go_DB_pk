@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<script defer src="/js/walidprodukt.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admin.css" />
+    <script> var exports = {}; </script>
+    <script defer src="/js/delete.js"></script>
+    <title>Admin</title>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="header-item log-out">
+            <a class="blacked log-out" href="/admin/logout">Wyloguj się</a>
+        </div>
+        <div class="header-item">
+            <a class="blacked" href="/admin/adminusers">Użytkownicy</a>
+        </div>
+        <!-- <div class="header-item">
+            <a class="blacked" href="/admin/adminzamowienie">User's Orders</a>
+        </div> -->
+    </header>
+    <main>
+
+        <p id="dontForget" class="whiteBackground">Zaznacz produkty z listy, które pragniesz usunąć.<br />
+        </p>
+        <table>
+            <caption>Produkty:</caption>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Id</th>
+                    <th>Nazwa</th>
+                    <th>Typ</th>
+                    <th>Waga</th>
+                    <th>Cena</th>
+                </tr>
+            </thead>
+            <tfoot>
+            </tfoot>
+            <tbody id="tbody-interests">
+                <% productList.forEach(function(product){ %>
+                <tr>
+                    <td><input type="checkbox" name="checkbox<%= product.id %>" value="<%= product.id %>"></td>
+                    <form action="/admin/updateproduct" method="POST">
+                        <td><%= product.id %></td>
+                        <input type="hidden" name="id" value="<%= product.id %>" />
+                        <td><input type="text" name="nazwa" required value="<%= product.nazwa %>"></td>
+                        <td><input type="text" name="typ" required value="<%= product.typ %>"></td>
+                        <td><input type="number" min="0" name="waga" required value="<%= product.waga %>"></td>
+                        <td><input type="number" min="0" name="cena" required value="<%= product.cena %>"></td>
+                        <td><button type="submit">Edytuj Produkt</button></td>
+
+                    </form>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <br>
+        <button onclick="deleteSelectedProducts()" id='deleteBtn' type="submit">Usuń wybrane produkty</button>
+        <br>
+        <hr>
+        <br>
+        <p class="blacked">Dodaj nowy produkt:</p>
+        <form action="/admin/addproduct" method="POST">
+            <p class="blacked">Nazwa: (Nie może zawierać cyfr lub znaków specjalnych)</p>
+            <input type="text" id="wnazwa" name="nazwa" placeholder="Nazwa produktu" required>
+            <p id="nazwa_error" class="val_error">
+                </li>
+                <p class="blacked">Typ: ((Nie może zawierać cyfr lub znaków specjalnych)</p>
+                <input type="text" id="wtyp" name="typ" placeholder="Typ produktu" required>
+                <p id="typ_error" class="val_error"></p>
+                <p class="blacked">Waga: (Może zawierać same cyfry)</p>
+                <input type="number" id="wwaga" min="0" name="waga" placeholder="Write product wage here" required>
+                <p id="waga_error" class="val_error"></p>
+                <p class="blacked">Cena: (Może zawierać same cyfry)</p>
+                <input type="number" id="wcena" min="0" name="cena" placeholder="Write product price here" required>
+                <p id="cena_error" class="val_error"></p>
+                <br>
+                <button class="btn" onclick="return walidprodukt()" type="submit">Dodaj produkt</button>
+        </form>
+
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+</body>
+
+</html>
