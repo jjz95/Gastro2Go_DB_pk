@@ -41,6 +41,11 @@
                 <li class="form-row">
                     <button onclick="return validatelogin()" type="submit">Zaloguj</button>
                 </li>
+                <li>
+                    <% if(messages.loginError) { %>
+                        <p style="color: red; display: flex; justify-content: center; align-self: center;"> <%=  messages.loginError %> </p>
+                    <% } %>
+                </li>
             </ul>
         </form>
         <div>
@@ -48,6 +53,7 @@
                 <button type="submit"> Zarejestruj się</button>
             </form>
         </div>
+
     </main>
 
     <footer>
