@@ -2,7 +2,7 @@
 exports.__esModule = true;
 //\d+$
 function deleteSelectedProducts() {
-    var result = confirm("Want to delete?");
+    var result = confirm("Czy na pewno chcesz usunąć?!");
     if (result) {
         //Logic to delete the item
         try {
