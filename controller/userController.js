@@ -219,6 +219,7 @@ router.post("/ordernow/:id", async (req, res, next) => {
         cost += currPrice * oc.ilosc
         wage += currWage * oc.ilosc
     })
+    
     Order.updateStatusToConfirmed(req.params.id, cost, wage)
     res.redirect('/users')
 })

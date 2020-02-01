@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/profil.css" />
     <link rel="stylesheet" href="/css/styleIndex.css" />
-    <link rel="stylesheet" href="/css/rejestracja.css" />
     <link href="https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
     <script> var exports = {}; </script>
     <script defer src="/js/updateOrderComponent.js"></script>
@@ -19,13 +18,13 @@
     <header>
         <div class="headerItemImg">
             <div>
-                <a href="/users/"><img class="GastroIcon" src="/img/GASTRO.png" alt="???"></a>
+                <a class="a-img" href="/users/"><img class="GastroIcon" src="/img/GASTRO.png" alt="???"></a>
             </div>
         </div>
         <div class="headerItem">
 
             <a href="/users">Twój Koszyk</a>
-            <a href="/users/shop">Przeglądaj Produkty</a>
+            <a href="/users/shop">Eksploruj Produkty</a>
 
             <!-- <a href="/info/kontakt">Kontakt</a>
             <a href="/info/onas">O Nas</a> -->
@@ -40,7 +39,7 @@
 
             <div class="product-table">
                 <table id="tabelka">
-                    <caption>Numer zamówienia: <%= orderId %></caption>
+                    <caption>Your Order: <%= orderId %></caption>
                     <thead>
                         <tr>
                             <th>Nazwa</th>
@@ -60,10 +59,10 @@
                         <tr>
                             <td><%= pv.product.nazwa %></td>
                             <td><%= pv.product.typ %></td>
-                            <td id="waga"><%= pv.product.id %>"><%= pv.product.waga %></td>
-                            <td id="cena"><%= pv.product.id %>"><%= pv.product.cena %></td>
-                            <td id="waga-ilosc"><%= pv.product.id %>"><%= pv.product.waga * pv.ilosc %></td>
-                            <td id="cena-ilosc"><%= pv.product.id %>"><%= pv.product.cena * pv.ilosc %></td>
+                            <td id="waga<%= pv.product.id %>"><%= pv.product.waga %></td>
+                            <td id="cena<%= pv.product.id %>"><%= pv.product.cena %></td>
+                            <td id="waga-ilosc<%= pv.product.id %>"><%= pv.product.waga * pv.ilosc %></td>
+                            <td id="cena-ilosc<%= pv.product.id %>"><%= pv.product.cena * pv.ilosc %></td>
                             <td><%= pv.ilosc %></td>
                         </tr>
                         <% }) %>
